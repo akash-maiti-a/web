@@ -1,6 +1,11 @@
 import { Fragment, useEffect, useState } from 'react';
 
-const commands = ['whoami', 'cat about.txt', 'ls links/'];
+const commands = ['boot --hub', 'whoami', 'cat contract.txt', 'ls equipment/'];
+
+const bootLog = [
+  'Power grid ............ ONLINE  (87.4 / 100 MW)',
+  'Biometric scan ........ IDENTIFIED',
+];
 
 // Only animate on the first visit to the home page per page load
 let hasPlayed = false;
@@ -8,13 +13,13 @@ let hasPlayed = false;
 function Prompt({ children }) {
   return (
     <p className="prompt">
-      <span className="ps1"><span className="ps1-user">akash@portfolio</span>:<span className="ps1-path">~</span>$</span>{' '}
+      <span className="ps1"><span className="ps1-user">AKASH</span>@<span className="ps1-path">PORTFOLIO</span>&gt;</span>{' '}
       {children}
     </p>
   );
 }
 
-function Terminal({ profile }) {
+function Terminal({ profile, education }) {
   const [step, setStep] = useState(hasPlayed ? commands.length : 0);
   const [chars, setChars] = useState(0);
   const done = step >= commands.length;
@@ -25,8 +30,8 @@ function Terminal({ profile }) {
       return;
     }
     const cmd = commands[step];
-    // Pause before each command, type with a little jitter, then pause before "pressing enter"
-    const delay = chars === 0 ? 700 : chars < cmd.length ? 50 + Math.random() * 80 : 350;
+    // Pause before each command, type with a little jitter, then pause before new line
+    const delay = chars === 0 ? 650 : chars < cmd.length ? 45 + Math.random() * 75 : 350;
     const timer = setTimeout(() => {
       if (chars < cmd.length) {
         setChars(chars + 1);
@@ -38,25 +43,48 @@ function Terminal({ profile }) {
     return () => clearTimeout(timer);
   }, [step, chars, done]);
 
+  const contract = [
+    ['Employee', profile.name],
+    ['Assignment', profile.role],
+    ['Division', 'Software & Cybersecurity'],
+    ['Training', `${education.degree}, ${education.school}`],
+    ['Deployment', education.location],
+    ['Status', profile.status],
+  ];
+
   const outputs = [
-    <div>
+    <ul className="boot-log">
+      {bootLog.map(line => <li key={line}><span className="ok">[ OK ]</span> {line}</li>)}
+    </ul>,
+    <div className="pioneer">
+      <p className="pioneer-kicker"></p>
       <h1>{profile.name}</h1>
       <p className="role">{profile.role}</p>
     </div>,
-    <p className="bio">{profile.bio}</p>,
+    <div>
+      <dl className="contract">
+        {contract.map(([label, value]) => (
+          <Fragment key={label}>
+            <dt>{label}</dt>
+            <dd>{value}</dd>
+          </Fragment>
+        ))}
+      </dl>
+      {profile.bio && <p className="bio">{profile.bio}</p>}
+    </div>,
     <ul className="ls">
       <li><a className="ls-dir" href={profile.github} target="_blank" rel="noopener noreferrer">github/</a></li>
       <li><a className="ls-dir" href={profile.linkedin} target="_blank" rel="noopener noreferrer">linkedin/</a></li>
       <li><a className="ls-file" href={`mailto:${profile.email}`}>email.txt</a></li>
-      <li><a className="ls-exec" href={profile.resume}>resume.pdf</a></li>
     </ul>,
   ];
 
   return (
     <div className="terminal">
       <div className="terminal-bar">
-        <span className="dot red" /><span className="dot yellow" /><span className="dot green" />
-        <span className="terminal-title">akash@portfolio: ~ — zsh</span>
+        <span className="status-light" />
+        <span className="terminal-title">Terminal</span>
+        <span className="terminal-meta"></span>
       </div>
       <div className="terminal-body">
         {commands.map((cmd, i) => (

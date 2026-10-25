@@ -1036,7 +1036,7 @@ a:hover {
 .footer-inner {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   gap: 8px 20px;
 }
 .footer .status-light {

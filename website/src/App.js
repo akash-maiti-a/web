@@ -148,6 +148,16 @@ const projects = [
     output: 'Climbing Form Analysis & Feedback',
     link: null,
   },
+  {
+    name: 'LLMVulnTesting',
+    building: '',
+    start: 'Oct 2026',
+    end: 'Present',
+    inputs: ['LLM', 'Python', 'Docker'],
+    points: [],
+    output: 'RL-based Local Vulnerability Testing Framework',
+    link: null,
+  }
 ];
 
 const education = {
@@ -161,9 +171,9 @@ const education = {
 
 // `resource` picks the inventory icon; `purity` mimics resource-node purity
 const skills = [
-  { group: 'Languages', resource: 'ingot', purity: 'Pure', items: ['Python', 'C/C++', 'Java', 'JavaScript', 'SQL (PostgreSQL)', 'NoSQL (Firebase, Redis)', 'Qiskit'] },
-  { group: 'Frameworks', resource: 'plate', purity: 'Pure', items: ['React Native', 'PyTorch', 'Cloudflare', 'Supabase', 'OpenCV', 'Pandas', 'React', 'Node.js', 'TensorFlow'] },
-  { group: 'Specialized', resource: 'circuit', purity: 'Normal', items: ['Agentic Workflows', 'Reinforcement Learning', 'Containerized Sandboxing', 'Synthetic Data Pipelines'] },
+  { group: 'Languages', resource: 'ingot', purity: '', items: ['Python', 'C/C++', 'Java', 'JavaScript', 'SQL (PostgreSQL)', 'NoSQL (Firebase, Redis)', 'Qiskit'] },
+  { group: 'Frameworks', resource: 'plate', purity: '', items: ['React Native', 'PyTorch', 'Cloudflare', 'Supabase', 'OpenCV', 'Pandas', 'React', 'Node.js', 'TensorFlow'] },
+  { group: 'Specialized', resource: 'circuit', purity: '', items: ['Agentic Workflows', 'Reinforcement Learning', 'Containerized Sandboxing', 'Synthetic Data Pipelines'] },
 ];
 
 const navLinks = [
@@ -476,7 +486,6 @@ function App() {
       <footer className="footer">
         <div className="container footer-inner">
           <span><span className="status-light" /> Grid stable · © {new Date().getFullYear()} {profile.name}</span>
-          <span className="disclaimer">Based off the game Satisfactory. Not affiliated with Coffee Stain Studios.</span>
         </div>
       </footer>
     </>

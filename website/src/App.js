@@ -150,13 +150,13 @@ const projects = [
   },
   {
     name: 'LLMVulnTesting',
-    building: '',
+    building: 'GitHub Link',
     start: 'Oct 2026',
     end: 'Present',
     inputs: ['LLM', 'Python', 'Docker'],
     points: [],
     output: 'RL-based Local Vulnerability Testing Framework',
-    link: null,
+    link: 'https://akash-maiti-a.github.io/llmvulntesting/',
   }
 ];
 
@@ -308,7 +308,7 @@ function ProductionChain({ project, reveal }) {
       <Belt />
       <div className="panel chain-building">
         <div className="building-head">
-          <span className="building-type">{project.building}</span>
+          <span className="building-type">{project.link ? <a href={project.link} target="_blank" rel="noopener noreferrer">{project.building}</a> : project.building}</span>
           <span className="dates">{project.start === project.end ? project.start : `${project.start} – ${project.end}`}</span>
         </div>
         <h3 className="building-name">
